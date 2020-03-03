@@ -1,14 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
 
 namespace Desafio_02_Criptografia_JC
 {
+    /// <summary>
+    /// Classe CesarCypher para a criptografar e descriptografar mensagens usando a Cifra de César:
+    /// </summary>
     public class CesarCypher : ICrypt, IDecrypt
     {
+        /// <summary>
+        /// Quantidade de letras que deve ser trocada para cifrar ou decifrar um texto
+        /// </summary>
         private int TrocaCasas { get; } = 3;
 
+        /// <summary>
+        /// Método para cifra um texto usando a Cifra de César.
+        /// <exception cref="System.ArgumentNullException">Lançado quando o param <see cref="texto"/> é null.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">Lançado quando o param <see cref="texto"/> contém algum caracter especial ou letra acentuada como ç, á, é, etc.</exception>
+        /// </summary>
+        /// <param name="texto">Texto para ser cifrado</param>
+        /// <returns>Retorna o <see cref="texto"/> cifrado.</returns>
         public string Crypt(string texto)
         {
             if (texto == null)
@@ -49,6 +59,13 @@ namespace Desafio_02_Criptografia_JC
             return textoCifrado;
         }
 
+        /// <summary>
+        /// Método para decifrar um texto usando a Cifra de César.
+        /// </summary>
+        /// <exception cref="System.ArgumentNullException">Lançado quando o param <see cref="texto"/> é null.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">Lançado quando o param <see cref="texto"/> contém algum caracter especial ou letra acentuada como ç, á, é, etc.</exception>
+        /// <param name="texto">Texto para ser decifrado</param>
+        /// <returns>Retorna o <see cref="texto"/> decifrado.</returns>
         public string Decrypt(string texto)
         {
             if (texto == null)
