@@ -21,14 +21,14 @@ namespace Desafio_02_Criptografia_JC
         /// <returns>Retorna o <see cref="texto"/> cifrado.</returns>
         public string Crypt(string texto)
         {
-            if (texto == null)
+            if (texto is null)
             {
                 throw new ArgumentNullException(nameof(texto));
             }
 
-            if (texto.Trim() == "")
+            if (texto.Length == 0)
             {
-                return texto;
+                return String.Empty;
             }
 
             string textoMinusculo = texto.ToLower();
@@ -68,14 +68,14 @@ namespace Desafio_02_Criptografia_JC
         /// <returns>Retorna o <see cref="texto"/> decifrado.</returns>
         public string Decrypt(string texto)
         {
-            if (texto == null)
+            if (texto is null)
             {
                 throw new ArgumentNullException(nameof(texto));
             }
 
-            if (texto.Trim() == "")
+            if (texto.Length == 0)
             {
-                return texto;
+                return String.Empty;
             }
 
             string textoMinusculo = texto.ToLower();
