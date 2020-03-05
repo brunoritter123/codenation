@@ -7,10 +7,10 @@ namespace Codenation.Challenge
 
         [Fact]
         public void Fibonacci_Test()
-        {            
+        {
             var math = new Math();
             var result = math.Fibonacci();
-            Assert.NotNull(result);     
+            Assert.NotNull(result);
         }
 
         [Fact]

@@ -5,46 +5,38 @@ namespace Codenation.Challenge
 {
     public class Math
     {
-        private readonly int maxNumero = 350;
+        private readonly int _numeroMaximo = 350;
 
         public List<int> Fibonacci()
         {
-            int numero_anterior = 0;
-            int numero_atual = 1;
-            int numero_proximo = 1;
-            List<int> sequencia = new List<int> { numero_anterior, numero_atual };
-
-            while (numero_proximo <= maxNumero)
-            {
-                sequencia.Add(numero_proximo);
-                numero_anterior = numero_atual;
-                numero_atual = numero_proximo;
-                numero_proximo = numero_atual + numero_anterior;
-            }
-
-            return sequencia;
+            return GerarListaFibonacci(_numeroMaximo);
         }
 
         public bool IsFibonacci(int numberToTest)
         {
-            int numero_anterior = 0;
-            int numero_atual = 1;
-            int numero_proximo = 1;
-
-            if (numberToTest == numero_anterior || numberToTest == numero_atual)
+            if (numberToTest > _numeroMaximo)
             {
-                return true;
+                return false;
             }
 
-            while (numero_proximo < numberToTest)
-            {
-                numero_anterior = numero_atual;
-                numero_atual = numero_proximo;
-                numero_proximo = numero_atual + numero_anterior;
-            }
-
-            return numberToTest == numero_proximo;
+            var gerarListaFibonacci = GerarListaFibonacci(numberToTest);
+            return gerarListaFibonacci[gerarListaFibonacci.Count - 1] == numberToTest;
         }
 
+        private List<int> GerarListaFibonacci(int numeroMaximo)
+        {
+            int numeroAnterior = 0;
+            int proximoNumero = 1;
+            List<int> sequencia = new List<int> { numeroAnterior };
+
+            while (proximoNumero <= numeroMaximo)
+            {
+                sequencia.Add(proximoNumero);
+                proximoNumero = proximoNumero + numeroAnterior;
+                numeroAnterior = proximoNumero - numeroAnterior;
+            }
+
+            return sequencia;
+        }
     }
 }
