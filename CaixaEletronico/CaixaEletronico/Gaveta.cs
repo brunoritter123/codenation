@@ -34,7 +34,9 @@ namespace CaixaEletronico
         {
             if (ConsultarQuantidadeNotas() < quantidade)
             {
-                Console.WriteLine("Não existe notas suficientes para ser retiradas");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Não existe notas suficientes de '{TipoNotaGaveta.Valor} {TipoNotaGaveta.Moeda}' para ser retirada.");
+                Console.ResetColor();
             }
             else
             {

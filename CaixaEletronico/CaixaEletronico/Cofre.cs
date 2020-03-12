@@ -7,7 +7,7 @@ namespace CaixaEletronico
     {
         private List<Gaveta> _gavetas = new List<Gaveta>();
 
-        public void IncluirNotas(Nota nota)
+        public void IncluirNota(Nota nota)
         {
             var gavetaNotas = BuscarGaveta(nota);
             gavetaNotas.IncluirNota(nota);
@@ -22,7 +22,7 @@ namespace CaixaEletronico
 
         private Gaveta BuscarGaveta(Nota tipoDeNotaDaGaveta)
         {
-            var gavetaNotas = _gavetas.Find(gaveta => gaveta.TipoNotaGaveta == tipoDeNotaDaGaveta);
+            var gavetaNotas = _gavetas.Find(gaveta => gaveta.TipoNotaGaveta.Equals(tipoDeNotaDaGaveta));
             if (gavetaNotas is null)
             {
                 gavetaNotas = new Gaveta(tipoDeNotaDaGaveta);
