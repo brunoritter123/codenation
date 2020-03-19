@@ -5,7 +5,7 @@ namespace CaixaEletronico
 {
     class Cofre
     {
-        private List<Gaveta> _gavetas = new List<Gaveta>();
+        private Dictionary<Nota, Gaveta> _gavetas = new Dictionary<Nota, Gaveta>();
 
         public void IncluirNota(Nota nota)
         {
@@ -22,19 +22,35 @@ namespace CaixaEletronico
 
         private Gaveta BuscarGaveta(Nota tipoDeNotaDaGaveta)
         {
-            var gavetaNotas = _gavetas.Find(gaveta => gaveta.TipoNotaGaveta.Equals(tipoDeNotaDaGaveta));
-            if (gavetaNotas is null)
+            Gaveta gavetaNotas;
+
+            if (!_gavetas.TryGetValue(tipoDeNotaDaGaveta, out gavetaNotas))
             {
                 gavetaNotas = new Gaveta(tipoDeNotaDaGaveta);
-                _gavetas.Add(gavetaNotas);
+                _gavetas.Add(tipoDeNotaDaGaveta, gavetaNotas);
             }
 
             return gavetaNotas;
         }
 
-        public int ConsultarValorDoCofre()
+        public Dictionary<string, int> ConsultarValorDoCofre()
         {
-            return _gavetas.Sum(gaveta => gaveta.ConsultarValorDaGaveta());
+            var totalPorMoeda = new Dictionary<string, int>();
+            int totalGaveta;
+            string tipoNotaGaveta;
+
+            foreach (var gaveta in _gavetas)
+            {
+                totalGaveta = gaveta.Value.ConsultarValorDaGaveta();
+                tipoNotaGaveta = gaveta.Value.TipoNotaGaveta.Moeda;
+
+                if (!totalPorMoeda.TryAdd(tipoNotaGaveta, totalGaveta))
+                {
+                    totalPorMoeda[tipoNotaGaveta] += totalGaveta;
+                }
+            }
+
+            return totalPorMoeda;
         }
     }
 }

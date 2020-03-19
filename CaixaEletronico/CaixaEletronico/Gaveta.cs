@@ -7,11 +7,11 @@ namespace CaixaEletronico
     class Gaveta
     {
         public Nota TipoNotaGaveta { get; }
-        private List<Nota> _notas = new List<Nota>();
+        private Stack<Nota> _notas = new Stack<Nota>();
 
         public void IncluirNota(Nota nota)
         {
-            _notas.Add(nota);
+            _notas.Push(nota);
         }
 
         public Gaveta(Nota tipoNotaGaveta)
@@ -34,13 +34,14 @@ namespace CaixaEletronico
         {
             if (ConsultarQuantidadeNotas() < quantidade)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Não existe notas suficientes de '{TipoNotaGaveta.Valor} {TipoNotaGaveta.Moeda}' para ser retirada.");
-                Console.ResetColor();
+                Util.ConsoleErro($"Não existe notas suficientes de '{TipoNotaGaveta.Valor} {TipoNotaGaveta.Moeda}' para ser retirada.");
             }
             else
             {
-                _notas.RemoveRange(0, quantidade);
+                for (int i = 0; i < quantidade; i++)
+                {
+                    _notas.Pop();
+                }
             }
         }
     }

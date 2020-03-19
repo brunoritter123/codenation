@@ -16,14 +16,40 @@ namespace CaixaEletronico
 
             return new Nota(valorNota, moedaNota);
         }
+
+        static void IncluirNota(Cofre cofre)
+        {
+            var nota = PerguntarNota();
+            cofre.IncluirNota(nota);
+        }
+
+        static void RetirarNota(Cofre cofre)
+        {
+            var nota = PerguntarNota();
+            Console.WriteLine("Quantidade de notas para retirar: ");
+            int.TryParse(Console.ReadLine(), out int quantidadeNotasRetirar);
+            Console.WriteLine("");
+            cofre.RetirarNotas(nota, quantidadeNotasRetirar);
+        }
+        static void TotalDoCofre(Cofre cofre)
+        {
+            var totalValorCofre = cofre.ConsultarValorDoCofre();
+            Console.WriteLine("Total do cofre é: ");
+            foreach (var totalPorMoeda in totalValorCofre)
+            {
+                Console.WriteLine($"{totalPorMoeda.Value} - {totalPorMoeda.Key}");
+            }
+            Console.ReadKey();
+        }
+
+
         static void Main(string[] args)
         {
             var cofre = new Cofre();
-            Nota novaNota;
 
             while (true)
             {
-                Console.WriteLine("");
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Digite opção: 1=Incluir Nota, 2=Retirar Notas ou 3=Consultar Valor do Cofre");
                 Console.ResetColor();
@@ -32,26 +58,20 @@ namespace CaixaEletronico
 
                 switch (opcao)
                 {
-                    case 1: // Incluir Nota
-                        novaNota = PerguntarNota();
-                        cofre.IncluirNota(novaNota);
+                    case 1:
+                        IncluirNota(cofre);
                         break;
 
-                    case 2: // Retirar Nota
-                        novaNota = PerguntarNota();
-                        Console.WriteLine("Quantidade de notas para retirar: ");
-                        int.TryParse(Console.ReadLine(), out int quantidadeNotasRetirar);
-                        Console.WriteLine("");
-                        cofre.RetirarNotas(novaNota, quantidadeNotasRetirar);
+                    case 2:
+                        RetirarNota(cofre);
                         break;
 
                     case 3:
-                        var totalValorCofre = cofre.ConsultarValorDoCofre();
-                        Console.WriteLine($"Total do cofre é: {totalValorCofre}");
+                        TotalDoCofre(cofre);
                         break;
 
                     default:
-                        Console.WriteLine("Opção não suportada:");
+                        Util.ConsoleErro("Opção não suportada:");
                         break;
                 }
             }
