@@ -15,7 +15,7 @@ namespace Codenation.Challenge
 
         public int GetHashCode(Candidate obj)
         {
-            return (obj.UserId.ToString() + obj.AccelerationId.ToString() + obj.CompanyId.ToString()).GetHashCode();
+            return (obj.UserId.ToString() + '|' + obj.AccelerationId.ToString() + '|' + obj.CompanyId.ToString()).GetHashCode();
         }
     }
 }
