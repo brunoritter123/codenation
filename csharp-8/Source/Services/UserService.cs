@@ -20,14 +20,11 @@ namespace Codenation.Challenge.Services
         /// <returns>Lista de usuário da acelereção</returns>
         public IList<User> FindByAccelerationName(string name)
         {
-            return (from user in _context.Users
-                    join candidate in _context.Candidates on user.Id equals candidate.UserId
-                    join acceleration in _context.Accelerations on candidate.AccelerationId equals acceleration.Id
-                    where acceleration.Name == name
-                    orderby user.Id
-                    select user)
-                    .Distinct()
-                    .ToList();
+            return _context.Candidates
+                           .Where(c => c.Acceleration.Name == name)
+                           .GroupBy(u => u.User)
+                           .Select(g => g.Key)
+                           .ToList();
         }
 
         /// <summary>
@@ -40,7 +37,6 @@ namespace Codenation.Challenge.Services
             return (from user in _context.Users
                     join candidate in _context.Candidates on user.Id equals candidate.UserId
                     where candidate.CompanyId == companyId
-                    orderby user.Id
                     select user)
                     .Distinct()
                     .ToList();

@@ -9,28 +9,50 @@ namespace Codenation.Challenge
 {
     public class SubmissionServiceTest
     {
+        [Theory]
+        [InlineData(1, 91.13)]
+        [InlineData(2, 50.0)]
+        [InlineData(3, 79.22)]
+        [InlineData(4, 90.08)]
+        [InlineData(5, 58.67)]
+        [InlineData(6, 67.08)]
+        [InlineData(7, 58.9)]
+        [InlineData(8, 43.2)]
+        [InlineData(9, 51.18)]
+        public void FindHigherScoreByChallengeIdTeste_Return_Right(int challengeId, decimal expectedMaxScore)
+        {
+            var fakeContext = new FakeContext("FindHigherScoreByChallengeId");
+            fakeContext.FillWith<Submission>();
+            fakeContext.FillWith<Models.Challenge>();
+
+            using (var context = new CodenationContext(fakeContext.FakeOptions))
+            {
+                var service = new SubmissionService(context);
+                var actual = service.FindHigherScoreByChallengeId(challengeId);
+
+                Assert.Equal(expectedMaxScore, actual);
+            }
+        }
 
         [Theory]
-        //[InlineData(1, 1, "1,1")]
-        [InlineData(1, 1)]
-        [InlineData(2, 1, "1,2", "2,2")]
+        [InlineData(1, 1, "1,1")]
+        [InlineData(2, 1, "1,2")]
         [InlineData(3, 2, "2,3", "3,3")]
-        //[InlineData(4, 4, "1,4", "3,4", "4,4")]
-        [InlineData(4, 4)]
-        [InlineData(5, 3, "2,5", "4,5", "5,5")]
-        //[InlineData(6, 6, "3,6", "5,6", "6,6")]
-        [InlineData(6, 6)]
-        //[InlineData(7, 7, "4,7", "7,7")]
-        //[InlineData(8, 8, "5,8", "8,8")]
-        //[InlineData(9, 9, "9,9")]
-        [InlineData(7, 7)]
-        [InlineData(8, 8)]
-        [InlineData(9, 9)]
+        [InlineData(4, 4, "1,4", "3,4", "4,4")]
+        [InlineData(5, 3, "2,5")]
+        [InlineData(6, 6, "6,6")]
+        [InlineData(7, 7, "7,7")]
+        [InlineData(8, 8, "8,8")]
+        [InlineData(9, 9, "9,9")]
         [InlineData(10, 4)]
         public void FindByAccelerationIdTest_Return_Right(int challengeId, int accelerationId, params string[] idSubmissionsExpected)
         {
             var fakeContext = new FakeContext("FindByChallengeIdAndAccelerationId");
+            fakeContext.FillWith<Acceleration>();
             fakeContext.FillWith<Candidate>();
+            fakeContext.FillWith<User>();
+            fakeContext.FillWith<Submission>();
+            fakeContext.FillWith <Models.Challenge>();
 
             using (var context = new CodenationContext(fakeContext.FakeOptions))
             {
@@ -45,7 +67,9 @@ namespace Codenation.Challenge
                 }
 
                 var service = new SubmissionService(context);
-                var actual = service.FindByChallengeIdAndAccelerationId(challengeId, accelerationId);
+                var actual = service.FindByChallengeIdAndAccelerationId(challengeId, accelerationId)
+                                    .OrderBy(s => s.UserId)
+                                    .ThenBy(s => s.ChallengeId);
 
                 Assert.Equal(expected, actual, new SubmissionIdComparer());
             }
@@ -78,7 +102,7 @@ namespace Codenation.Challenge
         }
 
         [Theory]
-        [InlineData(4, 6)]
+        [InlineData(9, 9)]
         public void SaveTeste_When_Update(int userId, int challengeId)
         {
             var fakeContext = new FakeContext("UpdateSubmission");

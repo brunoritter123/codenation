@@ -20,13 +20,10 @@ namespace Codenation.Challenge.Services
         /// <returns>Lista de empresas</returns>
         public IList<Company> FindByAccelerationId(int accelerationId)
         {
-            return (from company in _context.Companies
-                    join candidate in _context.Candidates on company.Id equals candidate.CompanyId
-                    where candidate.AccelerationId == accelerationId
-                    orderby company.Id
-                    select company)
-                    .Distinct()
-                    .ToList();
+            return _context.Candidates.Where(c => c.AccelerationId == accelerationId)
+                                      .GroupBy(c => c.Company)
+                                      .Select(c => c.Key)
+                                      .ToList();
         }
 
         /// <summary>
@@ -46,13 +43,10 @@ namespace Codenation.Challenge.Services
         /// <returns>Lista de empresas</returns>
         public IList<Company> FindByUserId(int userId)
         {
-            return (from company in _context.Companies
-                    join candidate in _context.Candidates on company.Id equals candidate.CompanyId
-                    where candidate.UserId == userId
-                    orderby company.Id
-                    select company)
-                    .Distinct()
-                    .ToList();
+            return _context.Candidates.Where(c => c.UserId == userId)
+                                      .GroupBy(c => c.Company)
+                                      .Select(c => c.Key)
+                                      .ToList();
         }
 
         /// <summary>

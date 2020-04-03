@@ -21,9 +21,6 @@ namespace Codenation.Challenge.Services
         {
             return _context.Candidates
                 .Where(c => c.AccelerationId == accelerationId)
-                .OrderBy(c => c.UserId)
-                .ThenBy(c => c.AccelerationId)
-                .ThenBy(c => c.CompanyId)
                 .ToList();
         }
 
@@ -36,9 +33,6 @@ namespace Codenation.Challenge.Services
         {
             return _context.Candidates
                 .Where(c => c.CompanyId == companyId)
-                .OrderBy(c => c.UserId)
-                .ThenBy(c => c.AccelerationId)
-                .ThenBy(c => c.CompanyId)
                 .ToList();
         }
 

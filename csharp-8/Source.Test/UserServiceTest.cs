@@ -1,6 +1,7 @@
 using Codenation.Challenge.Models;
 using Codenation.Challenge.Services;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using Xunit;
 
@@ -52,7 +53,8 @@ namespace Codenation.Challenge
                 }
 
                 var service = new UserService(context);
-                var actual = service.FindByAccelerationName(nameAcceleration);
+                var actual = service.FindByAccelerationName(nameAcceleration)
+                                    .OrderBy(u => u.Id);
 
                 Assert.Equal(expected, actual, new UserIdComparer());
             }

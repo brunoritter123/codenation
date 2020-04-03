@@ -24,7 +24,6 @@ namespace Codenation.Challenge.Services
                     join acceleration in _context.Accelerations on challenge.Id equals acceleration.ChallengeId
                     join candidate in _context.Candidates on acceleration.Id equals candidate.AccelerationId
                     where acceleration.Id == accelerationId && candidate.UserId == userId
-                    orderby challenge.Id
                     select challenge)
                     .Distinct()
                     .ToList();

@@ -20,13 +20,10 @@ namespace Codenation.Challenge.Services
         /// <returns>Lista de acelerações da empresa</returns>
         public IList<Acceleration> FindByCompanyId(int companyId)
         {
-            return (from acceleration in _context.Accelerations
-                    join candidate in _context.Candidates on acceleration.Id equals candidate.AccelerationId
-                    where candidate.CompanyId == companyId
-                    orderby acceleration.Id
-                    select acceleration)
-                    .Distinct()
-                    .ToList();
+            return _context.Accelerations
+                .Where(a => a.Candidates.Any(c => c.CompanyId == companyId))
+                .Distinct()
+                .ToList();
         }
 
         /// <summary>

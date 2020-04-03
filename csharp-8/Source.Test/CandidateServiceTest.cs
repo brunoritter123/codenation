@@ -64,7 +64,10 @@ namespace Codenation.Challenge
                 }
 
                 var service = new CandidateService(context);
-                var actual = service.FindByAccelerationId(accelerationId);
+                var actual = service.FindByAccelerationId(accelerationId)
+                    .OrderBy(a => a.UserId)
+                    .ThenBy(a => a.AccelerationId)
+                    .ThenBy(a => a.CompanyId);
 
                 Assert.Equal(expected, actual, new CandidateIdComparer());
             }
