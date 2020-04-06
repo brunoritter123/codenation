@@ -13,7 +13,7 @@ namespace Codenation.Challenge
         {
             var service = new RandomService();
             var numbers = new List<int>();
-            for(var i = 0; i < 100; i++)
+            for (var i = 0; i < 100; i++)
                 numbers.Add(service.RandomInteger(50));
             Assert.True(numbers.Sum() / numbers[0] != numbers.Count);
         }

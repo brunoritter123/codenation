@@ -4,11 +4,10 @@ namespace Codenation.Challenge.Services
 {
     public class RandomService: IRandomService
     {
-        private readonly Random _random = new Random();
-
         public int RandomInteger(int max)
         {
-            return _random.Next(max);
+            Random random = new Random();
+            return random.Next(max);
         }
     }
 }

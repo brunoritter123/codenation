@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Codenation.Challenge.Models;
 using Codenation.Challenge.Services;
 using Microsoft.AspNetCore.Mvc;
-using Codenation.Challenge.Extensions;
 
 namespace Codenation.Challenge.Controllers
 {
@@ -22,23 +21,50 @@ namespace Codenation.Challenge.Controllers
         [HttpGet]
         public ActionResult<QuoteView> GetAnyQuote()
         {
-            var quote = _service.GetAnyQuote();
-            if (quote is null)
-                return NotFound();
+            try
+            {
+                Quote quote = _service.GetAnyQuote();
+                if (quote == null)
+                    return NotFound();
 
-            return Ok(quote.ToApiView());
+                QuoteView quoteView = new QuoteView()
+                {
+                    Id = quote.Id,
+                    Actor = quote.Actor,
+                    Detail = quote.Detail
+                };
+
+                return Ok(quoteView);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // GET api/quote/{actor}
         [HttpGet("{actor}")]
         public ActionResult<QuoteView> GetAnyQuote(string actor)
         {
-            var quote = _service.GetAnyQuote(actor);
-            if (quote is null)
-                return NotFound();
+            try
+            {
+                Quote quote = _service.GetAnyQuote(actor);
+                if (quote == null)
+                    return NotFound();
 
-            return Ok(quote.ToApiView());
+                QuoteView quoteView = new QuoteView()
+                {
+                    Id = quote.Id,
+                    Actor = quote.Actor,
+                    Detail = quote.Detail
+                };
+
+                return Ok(quoteView);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
-
     }
 }

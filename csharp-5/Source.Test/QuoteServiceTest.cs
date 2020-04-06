@@ -30,14 +30,14 @@ namespace Codenation.Challenge
             fakeDbSet.As<IQueryable<Quote>>().Setup(x => x.ElementType).Returns(fakeQuotes.ElementType);
             fakeDbSet.As<IQueryable<Quote>>().Setup(x => x.GetEnumerator()).Returns(fakeQuotes.GetEnumerator());
 
-            this.fakeContext = new Mock<ScriptsContext>();            
+            this.fakeContext = new Mock<ScriptsContext>();
             this.fakeContext.Setup(x => x.Quotes).Returns(fakeDbSet.Object);
         }
 
         [Fact]
         public void Should_Returns_Null_When_Get_Any_Quote_By_Non_Exists_Actor()
         {
-            var fakeService = new QuoteService(fakeContext.Object, new RandomService());            
+            var fakeService = new QuoteService(fakeContext.Object, new RandomService());
             var actual = fakeService.GetAnyQuote("Brian");
             Assert.Null(actual);
         }
@@ -59,38 +59,36 @@ namespace Codenation.Challenge
         public void GetAnyQuoteTest_NotActor_ReturnRandom()
         {
             var fakeService = new QuoteService(fakeContext.Object, new RandomService());
-            var quotes = fakeContext.Object.Quotes.ToList();
             var quoteRandom = new List<Quote>();
-
 
             for (var i = 0; i < 100; i++)
                 quoteRandom.Add(fakeService.GetAnyQuote());
 
-            foreach (var quote in quotes)
+            foreach (var quote in fakeContext.Object.Quotes)
             {
-                Assert.Contains<Quote>(quote, quoteRandom, new QuoteIdComparer());
+                Assert.Contains(quote, quoteRandom, new QuoteIdComparer());
             }
         }
 
-        //[Fact]
-        //public void GetAnyQuoteTest_NotActor_ReturnNull()
-        //{
-        //    // Criando um backup dos dados
-        //    var quotes = fakeContext.Object.Quotes.ToList();
+        [Fact]
+        public void GetAnyQuoteTest_NotActor_ReturnNull()
+        {
+            // Criando um backup dos dados
+            var quotes = fakeContext.Object.Quotes.ToList();
 
-        //    // Deletando os dados
-        //    fakeContext.Object.Quotes.RemoveRange(quotes);
-        //    fakeContext.Object.SaveChanges();
+            // Deletando os dados
+            fakeContext.Object.Quotes.RemoveRange(quotes);
+            fakeContext.Object.SaveChanges();
 
-        //    var fakeService = new QuoteService(fakeContext.Object, new RandomService());
-        //    var actual = fakeService.GetAnyQuote();
+            var fakeService = new QuoteService(fakeContext.Object, new RandomService());
+            var actual = fakeService.GetAnyQuote();
 
-        //    // Restaurando os dados
-        //    fakeContext.Object.Quotes.AddRange(quotes);
-        //    fakeContext.Object.SaveChanges();
+            // Restaurando os dados
+            fakeContext.Object.Quotes.AddRange(quotes);
+            fakeContext.Object.SaveChanges();
 
-        //    Assert.Null(actual);
-        //}
+            Assert.Null(actual);
+        }
     }
 
 }
