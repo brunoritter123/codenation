@@ -95,7 +95,7 @@ namespace Codenation.Challenge
             fakeContext.Object.SaveChanges();
 
             Assert.NotNull(actual);
-            Assert.IsType<NotFoundResult>(actual.Result);
+            Assert.IsType<NoContentResult>(actual.Result);
         }
     }
 }

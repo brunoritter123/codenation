@@ -25,7 +25,7 @@ namespace Codenation.Challenge.Controllers
             {
                 Quote quote = _service.GetAnyQuote();
                 if (quote == null)
-                    return NotFound();
+                    return NoContent();
 
                 QuoteView quoteView = new QuoteView()
                 {
