@@ -23,16 +23,9 @@ namespace Codenation.Challenge.Controllers
         {
             var quote = _service.GetAnyQuote();
             if (quote is null)
-                return NotFound();
+                return NoContent();
 
-            var quoteView = new QuoteView()
-            {
-                Id = quote.Id,
-                Actor = quote.Actor,
-                Detail = quote.Detail
-            };
-
-            return quoteView;
+            return Ok(QuoteToView(quote));
 
         }
 
@@ -44,14 +37,20 @@ namespace Codenation.Challenge.Controllers
             if (quote is null)
                 return NotFound();
 
-            var quoteView = new QuoteView()
+            return Ok(QuoteToView(quote));
+        }
+
+        private QuoteView QuoteToView(Quote quote)
+        {
+            if (quote == null)
+                return null;
+
+            return new QuoteView()
             {
                 Id = quote.Id,
                 Actor = quote.Actor,
                 Detail = quote.Detail
             };
-
-            return quoteView;
         }
 
     }

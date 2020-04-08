@@ -72,30 +72,5 @@ namespace Codenation.Challenge
 
             Assert.InRange(actual.Id, fakeContext.Object.Quotes.First().Id, fakeContext.Object.Quotes.Last().Id);
         }
-
-        //[Fact]
-        //public void GetAnyQuoteTest_NotActor_ReturnNull()
-        //{
-        //    var fakeRandom = new Mock<IRandomService>();
-        //    fakeRandom.Setup(x => x.RandomInteger(It.IsAny<int>())).Returns(0);
-        //    var fakeService = new QuoteService(fakeContext.Object, fakeRandom.Object);
-        //    var controller = new QuoteController(fakeService);
-
-        //    // Criando um backup dos dados
-        //    var quotes = fakeContext.Object.Quotes.ToList();
-
-        //    // Deletando os dados
-        //    fakeContext.Object.Quotes.RemoveRange(quotes);
-        //    fakeContext.Object.SaveChanges();
-
-        //    var actual = controller.GetAnyQuote();
-
-        //    // Restaurando os dados
-        //    fakeContext.Object.Quotes.AddRange(quotes);
-        //    fakeContext.Object.SaveChanges();
-
-        //    Assert.NotNull(actual);
-        //    Assert.IsType<NoContentResult>(actual.Result);
-        //}
     }
 }

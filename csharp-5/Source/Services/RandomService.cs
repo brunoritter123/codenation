@@ -2,12 +2,17 @@ using System;
 
 namespace Codenation.Challenge.Services
 {
-    public class RandomService: IRandomService
+    public class RandomService : IRandomService
     {
+        private readonly Random _random;
+        public RandomService()
+        {
+            _random = new Random();
+        }
+
         public int RandomInteger(int max)
         {
-            Random random = new Random();
-            return random.Next(max);
+            return _random.Next(max);
         }
     }
 }

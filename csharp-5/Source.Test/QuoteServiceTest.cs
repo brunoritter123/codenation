@@ -69,26 +69,5 @@ namespace Codenation.Challenge
                 Assert.Contains(quote, quoteRandom, new QuoteIdComparer());
             }
         }
-
-        //[Fact]
-        //public void GetAnyQuoteTest_NotActor_ReturnNull()
-        //{
-        //    // Criando um backup dos dados
-        //    var quotes = fakeContext.Object.Quotes.ToList();
-
-        //    // Deletando os dados
-        //    fakeContext.Object.Quotes.RemoveRange(quotes);
-        //    fakeContext.Object.SaveChanges();
-
-        //    var fakeService = new QuoteService(fakeContext.Object, new RandomService());
-        //    var actual = fakeService.GetAnyQuote();
-
-        //    // Restaurando os dados
-        //    fakeContext.Object.Quotes.AddRange(quotes);
-        //    fakeContext.Object.SaveChanges();
-
-        //    Assert.Null(actual);
-        //}
     }
-
 }
