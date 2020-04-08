@@ -1,12 +1,13 @@
-Execução de teste para /home/bruno/codenation/csharp-5/Source.Test/bin/Debug/netcoreapp2.2/Source.Test.dll(.NETCoreApp,Version=v2.2)
+Execução de teste para /home/bruno/codenation/csharp-5/Source.TestSubmission/bin/Debug/netcoreapp2.2/Source.TestSubmission.dll(.NETCoreApp,Version=v2.2)
 Ferramenta de Linha de Comando de Execução de Teste da Microsoft (R) Versão 16.3.0
 Copyright (c) Microsoft Corporation. Todos os direitos reservados.
 
 Iniciando execução de teste, espere...
 
 1 arquivos de teste no total corresponderam ao padrão especificado.
+Results File: /home/bruno/codenation/csharp-5/Source.TestSubmission/results.xml
 
 Execução de Teste Bem-sucedida.
-Total de testes: 3
-     Aprovados: 3
-Tempo total: 2,3199 Segundos
+Total de testes: 7
+     Aprovados: 7
+Tempo total: 2,0346 Segundos

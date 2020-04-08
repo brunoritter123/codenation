@@ -54,10 +54,7 @@ namespace Codenation.Challenge
             var controller = new QuoteController(fakeService);
             var actualActionResult = controller.GetAnyQuote("Graham");
             var expected = fakeContext.Object.Quotes.FirstOrDefault(x => x.Id == 3);
-
-            var actualResult = Assert.IsType<OkObjectResult>(actualActionResult.Result);
-            var actual = Assert.IsType<QuoteView>(actualResult.Value);
-
+            var actual = actualActionResult.Value;
             Assert.Equal(expected.Id, actual.Id);
         }
 
@@ -67,8 +64,7 @@ namespace Codenation.Challenge
             var fakeService = new QuoteService(fakeContext.Object, new RandomService());
             var controller = new QuoteController(fakeService);
             var actualActionResult = controller.GetAnyQuote();
-            var actualResult = Assert.IsType<OkObjectResult>(actualActionResult.Result);
-            var actual = Assert.IsType<QuoteView>(actualResult.Value);
+            var actual = actualActionResult.Value;
 
             Assert.InRange(actual.Id, fakeContext.Object.Quotes.First().Id, fakeContext.Object.Quotes.Last().Id);
         }

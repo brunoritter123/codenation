@@ -25,7 +25,7 @@ namespace Codenation.Challenge.Controllers
             if (quote is null)
                 return NoContent();
 
-            return Ok(QuoteToView(quote));
+            return QuoteToView(quote);
 
         }
 
@@ -37,7 +37,7 @@ namespace Codenation.Challenge.Controllers
             if (quote is null)
                 return NotFound();
 
-            return Ok(QuoteToView(quote));
+            return QuoteToView(quote);
         }
 
         private QuoteView QuoteToView(Quote quote)
