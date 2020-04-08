@@ -21,50 +21,38 @@ namespace Codenation.Challenge.Controllers
         [HttpGet]
         public ActionResult<QuoteView> GetAnyQuote()
         {
-            try
-            {
-                Quote quote = _service.GetAnyQuote();
-                if (quote == null)
-                    return NoContent();
+            var quote = _service.GetAnyQuote();
+            if (quote is null)
+                return NotFound();
 
-                QuoteView quoteView = new QuoteView()
-                {
-                    Id = quote.Id,
-                    Actor = quote.Actor,
-                    Detail = quote.Detail
-                };
-
-                return Ok(quoteView);
-            }
-            catch (Exception e)
+            var quoteView = new QuoteView()
             {
-                return BadRequest(e.Message);
-            }
+                Id = quote.Id,
+                Actor = quote.Actor,
+                Detail = quote.Detail
+            };
+
+            return quoteView;
+
         }
 
         // GET api/quote/{actor}
         [HttpGet("{actor}")]
         public ActionResult<QuoteView> GetAnyQuote(string actor)
         {
-            try
-            {
-                Quote quote = _service.GetAnyQuote(actor);
-                if (quote == null)
-                    return NotFound();
+            var quote = _service.GetAnyQuote(actor);
+            if (quote is null)
+                return NotFound();
 
-                QuoteView quoteView = new QuoteView()
-                {
-                    Id = quote.Id,
-                    Actor = quote.Actor,
-                    Detail = quote.Detail
-                };
-
-                return Ok(quoteView);
-            }
-            catch (Exception e)
+            var quoteView = new QuoteView()
             {
-                return BadRequest(e.Message);
-            }
+                Id = quote.Id,
+                Actor = quote.Actor,
+                Detail = quote.Detail
+            };
+
+            return quoteView;
         }
+
     }
 }

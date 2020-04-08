@@ -18,24 +18,16 @@ namespace Codenation.Challenge.Services
 
         public Quote GetAnyQuote()
         {
-            int quoteCount = _context.Quotes.Count();
-            if (quoteCount == 0)
-                return null;
-
-            int quoteRandom = _randomService.RandomInteger(quoteCount);
-            return _context.Quotes.Skip(quoteRandom).FirstOrDefault();
+            int random = _randomService.RandomInteger(_context.Quotes.Count());
+            return _context.Quotes.ElementAtOrDefault(random);
         }
 
         public Quote GetAnyQuote(string actor)
         {
-            List<Quote> quotesActor = _context.Quotes.Where(q => q.Actor == actor).ToList();
-            int quoteCount = quotesActor.Count();
+            List<Quote> quotes = _context.Quotes.Where(q => q.Actor == actor).ToList();
 
-            if (quoteCount == 0)
-                return null;
-
-            int quoteRandom = _randomService.RandomInteger(quoteCount);
-            return quotesActor.Skip(quoteRandom).FirstOrDefault();
+            int random = _randomService.RandomInteger(quotes.Count());
+            return quotes.ElementAtOrDefault(random);
         }
     }
 }
