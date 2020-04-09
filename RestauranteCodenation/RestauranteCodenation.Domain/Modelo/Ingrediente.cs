@@ -1,9 +1,10 @@
-﻿using System;
+﻿using RestauranteCodenation.Domain.Repositorio;
+using System;
 using System.Collections.Generic;
 
 namespace RestauranteCodenation.Domain
 {
-    public class Ingrediente
+    public class Ingrediente : IEntity
     {
         public int Id { get; set; }
         public string Nome { get; set; }
