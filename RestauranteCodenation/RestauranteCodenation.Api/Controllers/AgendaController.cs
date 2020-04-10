@@ -11,46 +11,46 @@ namespace RestauranteCodenation.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class IngredienteController : ControllerBase
-    {
-        private readonly IngredienteRepositorio _repo;
-        public IngredienteController()
+    public class AgendaController : ControllerBase
+    {   
+        private readonly AgendaRepositorio _repo;
+        public AgendaController()
         {
-            _repo = new IngredienteRepositorio();
+            _repo = new AgendaRepositorio();
         }
-        // GET: api/Ingrediente
+        // GET: api/Agenda
         [HttpGet]
-        public IEnumerable<Ingrediente> Get()
+        public IEnumerable<Agenda> Get()
         {
             return _repo.SelecionarTodos();
         }
 
-        // GET: api/Ingrediente/5
+        // GET: api/Agenda/5
         [HttpGet("{id}")]
-        public Ingrediente Get(int id)
+        public Agenda Get(int id)
         {
             return _repo.SelecionarPorId(id);
         }
 
-        // POST: api/Ingrediente
+        // POST: api/Agenda
         [HttpPost]
-        public Ingrediente Post([FromBody] Ingrediente ingrediente)
+        public Agenda Post([FromBody] Agenda agenda)
         {
-            _repo.Incluir(ingrediente);
-            return ingrediente;
+            _repo.Incluir(agenda);
+            return agenda;
         }
 
-        // PUT: api/Ingrediente/5
+        // PUT: api/Agenda/5
         [HttpPut()]
-        public Ingrediente Put([FromBody] Ingrediente ingrediente)
+        public Agenda Put([FromBody] Agenda agenda)
         {
-            _repo.Alterar(ingrediente);
-            return ingrediente;
+            _repo.Alterar(agenda);
+            return agenda;
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public List<Ingrediente> Delete(int id)
+        public List<Agenda> Delete(int id)
         {
             _repo.Excluir(id);
             return _repo.SelecionarTodos();

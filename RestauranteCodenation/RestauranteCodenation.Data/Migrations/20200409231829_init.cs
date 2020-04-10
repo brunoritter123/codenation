@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RestauranteCodenation.Data.Migrations
 {
-    public partial class MeuPrimeiroBanco : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -68,7 +68,9 @@ namespace RestauranteCodenation.Data.Migrations
                 columns: table => new
                 {
                     IdCardapio = table.Column<int>(nullable: false),
-                    IdAgenda = table.Column<int>(nullable: false)
+                    IdAgenda = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
                 {
@@ -121,7 +123,9 @@ namespace RestauranteCodenation.Data.Migrations
                 columns: table => new
                 {
                     IdPrato = table.Column<int>(nullable: false),
-                    IdIngrediente = table.Column<int>(nullable: false)
+                    IdIngrediente = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
                 {

@@ -11,46 +11,46 @@ namespace RestauranteCodenation.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class IngredienteController : ControllerBase
+    public class CardapioController : ControllerBase
     {
-        private readonly IngredienteRepositorio _repo;
-        public IngredienteController()
+        private readonly CardapioRepositorio _repo;
+        public CardapioController()
         {
-            _repo = new IngredienteRepositorio();
+            _repo = new CardapioRepositorio();
         }
-        // GET: api/Ingrediente
+        // GET: api/Cardapio
         [HttpGet]
-        public IEnumerable<Ingrediente> Get()
+        public IEnumerable<Cardapio> Get()
         {
             return _repo.SelecionarTodos();
         }
 
-        // GET: api/Ingrediente/5
+        // GET: api/Cardapio/5
         [HttpGet("{id}")]
-        public Ingrediente Get(int id)
+        public Cardapio Get(int id)
         {
             return _repo.SelecionarPorId(id);
         }
 
-        // POST: api/Ingrediente
+        // POST: api/Cardapio
         [HttpPost]
-        public Ingrediente Post([FromBody] Ingrediente ingrediente)
+        public Cardapio Post([FromBody] Cardapio cardapio)
         {
-            _repo.Incluir(ingrediente);
-            return ingrediente;
+            _repo.Incluir(cardapio);
+            return cardapio;
         }
 
-        // PUT: api/Ingrediente/5
+        // PUT: api/Cardapio/5
         [HttpPut()]
-        public Ingrediente Put([FromBody] Ingrediente ingrediente)
+        public Cardapio Put([FromBody] Cardapio cardapio)
         {
-            _repo.Alterar(ingrediente);
-            return ingrediente;
+            _repo.Alterar(cardapio);
+            return cardapio;
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public List<Ingrediente> Delete(int id)
+        public List<Cardapio> Delete(int id)
         {
             _repo.Excluir(id);
             return _repo.SelecionarTodos();

@@ -11,46 +11,46 @@ namespace RestauranteCodenation.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class IngredienteController : ControllerBase
+    public class TipoPratoController : ControllerBase
     {
-        private readonly IngredienteRepositorio _repo;
-        public IngredienteController()
+        private readonly ITipoPratoRepositorio _repo;
+        public TipoPratoController(ITipoPratoRepositorio repo)
         {
-            _repo = new IngredienteRepositorio();
+            _repo = repo;
         }
-        // GET: api/Ingrediente
+        // GET: api/TipoPrato
         [HttpGet]
-        public IEnumerable<Ingrediente> Get()
+        public IEnumerable<TipoPrato> Get()
         {
             return _repo.SelecionarTodos();
         }
 
-        // GET: api/Ingrediente/5
+        // GET: api/TipoPrato/5
         [HttpGet("{id}")]
-        public Ingrediente Get(int id)
+        public TipoPrato Get(int id)
         {
             return _repo.SelecionarPorId(id);
         }
 
-        // POST: api/Ingrediente
+        // POST: api/TipoPrato
         [HttpPost]
-        public Ingrediente Post([FromBody] Ingrediente ingrediente)
+        public TipoPrato Post([FromBody] TipoPrato tipoPrato)
         {
-            _repo.Incluir(ingrediente);
-            return ingrediente;
+            _repo.Incluir(tipoPrato);
+            return tipoPrato;
         }
 
-        // PUT: api/Ingrediente/5
+        // PUT: api/TipoPrato/5
         [HttpPut()]
-        public Ingrediente Put([FromBody] Ingrediente ingrediente)
+        public TipoPrato Put([FromBody] TipoPrato tipoPrato)
         {
-            _repo.Alterar(ingrediente);
-            return ingrediente;
+            _repo.Alterar(tipoPrato);
+            return tipoPrato;
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public List<Ingrediente> Delete(int id)
+        public List<TipoPrato> Delete(int id)
         {
             _repo.Excluir(id);
             return _repo.SelecionarTodos();

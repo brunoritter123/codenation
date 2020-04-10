@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RestauranteCodenation.Data.Repositorio
 {
-    public class RepositorioBase<T> where T : class , IEntity
+    public class RepositorioBase<T> : IRepositorioBase<T> where T : class , IEntity
     {
         protected readonly Contexto _contexto;
         public RepositorioBase()
@@ -42,6 +42,21 @@ namespace RestauranteCodenation.Data.Repositorio
             _contexto.Set<T>().Remove(entity);
             _contexto.SaveChanges();
         }
+
+        public T SelecionarPorId()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<T> Excluir()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            _contexto.Dispose();
+        }
     }
 }
-}
+

@@ -10,8 +10,8 @@ using RestauranteCodenation.Data;
 namespace RestauranteCodenation.Data.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20200403013405_MeuPrimeiroBanco")]
-    partial class MeuPrimeiroBanco
+    [Migration("20200409231829_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,13 @@ namespace RestauranteCodenation.Data.Migrations
 
                     b.Property<int>("IdCardapio")
                         .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.HasKey("IdAgenda", "IdCardapio");
 
@@ -135,6 +142,13 @@ namespace RestauranteCodenation.Data.Migrations
 
                     b.Property<int>("IdIngrediente")
                         .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.HasKey("IdPrato", "IdIngrediente");
 
