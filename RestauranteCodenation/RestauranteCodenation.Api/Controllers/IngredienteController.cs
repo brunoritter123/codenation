@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RestauranteCodenation.Application.Interface;
+using RestauranteCodenation.Application.ViewModel;
 using RestauranteCodenation.Data.Repositorio;
 using RestauranteCodenation.Domain;
 using RestauranteCodenation.Domain.Repositorio;
@@ -14,43 +16,43 @@ namespace RestauranteCodenation.Api.Controllers
     [ApiController]
     public class IngredienteController : ControllerBase
     {
-        private readonly IIngredienteRepositorio _repo;
-        public IngredienteController(IIngredienteRepositorio repo)
+        private readonly IIngredienteApplication _app;
+        public IngredienteController(IIngredienteApplication app)
         {
-            _repo = repo;
+            _app = app;
         }
         
         [HttpGet]
-        public IEnumerable<Ingrediente> Get()
+        public IEnumerable<IngredienteViewModel> Get()
         {
-            return _repo.SelecionarTodos();
+            return _app.SelecionarTodos();
         }
                 
         [HttpGet("{id}")]
-        public Ingrediente Get(int id)
+        public IngredienteViewModel Get(int id)
         {
-            return _repo.SelecionarPorId(id);
+            return _app.SelecionarPorId(id);
         }
                 
         [HttpPost]
-        public Ingrediente Post([FromBody] Ingrediente ingrediente)
+        public IngredienteViewModel Post([FromBody] IngredienteViewModel ingrediente)
         {
-            _repo.Incluir(ingrediente);
+            _app.Incluir(ingrediente);
             return ingrediente;
         }
 
         [HttpPut]
-        public Ingrediente Put([FromBody] Ingrediente ingrediente)
+        public IngredienteViewModel Put([FromBody] IngredienteViewModel ingrediente)
         {
-            _repo.Alterar(ingrediente);
+            _app.Alterar(ingrediente);
             return ingrediente;
         }
                 
         [HttpDelete("{id}")]
-        public List<Ingrediente> Delete(int id)
+        public List<IngredienteViewModel> Delete(int id)
         {
-            _repo.Excluir(id);
-            return _repo.SelecionarTodos();
+            _app.Excluir(id);
+            return _app.SelecionarTodos();
         }
     }
 }

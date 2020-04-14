@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using RestauranteCodenation.Application.Interface;
+using RestauranteCodenation.Application.ViewModel;
 using RestauranteCodenation.Domain;
 using RestauranteCodenation.Domain.Repositorio;
 
@@ -9,43 +11,43 @@ namespace RestauranteCodenation.Api.Controllers
     [ApiController]
     public class PratoController : ControllerBase
     {
-        private readonly IPratoRepositorio _repo;
-        public PratoController(IPratoRepositorio repo)
+        private readonly IPratoApplication _app;
+        public PratoController(IPratoApplication app)
         {
-            _repo = repo;
+            _app = app;
         }
                
         [HttpGet]
-        public IEnumerable<Prato> Get()
+        public IEnumerable<PratoViewModel> Get()
         {
-            return _repo.SelecionarTodos();
+            return _app.SelecionarTodos();
         }
 
         [HttpGet("{id}")]
-        public Prato Get(int id)
+        public PratoViewModel Get(int id)
         {
-            return _repo.SelecionarPorId(id);
+            return _app.SelecionarPorId(id);
         }
 
         [HttpPost]
-        public Prato Post([FromBody] Prato prato)
+        public PratoViewModel Post([FromBody] PratoViewModel prato)
         {
-            _repo.Incluir(prato);
+            _app.Incluir(prato);
             return prato;
         }
 
         [HttpPut]
-        public Prato Put([FromBody] Prato prato)
+        public PratoViewModel Put([FromBody] PratoViewModel prato)
         {
-            _repo.Alterar(prato);
+            _app.Alterar(prato);
             return prato;
         }
 
         [HttpDelete("{id}")]
-        public IEnumerable<Prato> Delete(int id)
+        public IEnumerable<PratoViewModel> Delete(int id)
         {
-            _repo.Excluir(id);
-            return _repo.SelecionarTodos();
+            _app.Excluir(id);
+            return _app.SelecionarTodos();
         }
     }
 }
