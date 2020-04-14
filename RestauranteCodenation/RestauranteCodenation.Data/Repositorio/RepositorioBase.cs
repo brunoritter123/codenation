@@ -1,12 +1,10 @@
 ﻿using RestauranteCodenation.Domain.Repositorio;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace RestauranteCodenation.Data.Repositorio
 {
-    public class RepositorioBase<T> : IRepositorioBase<T> where T : class , IEntity
+    public class RepositorioBase<T> : IRepositorioBase<T> where T : class, IEntity
     {
         protected readonly Contexto _contexto;
         public RepositorioBase()
@@ -31,11 +29,6 @@ namespace RestauranteCodenation.Data.Repositorio
             return _contexto.Set<T>().FirstOrDefault(x => x.Id == id);
         }
 
-        public List<T> SelecionarTodos()
-        {
-            return _contexto.Set<T>().ToList();
-        }
-
         public void Excluir(int id)
         {
             var entity = SelecionarPorId(id);
@@ -43,14 +36,9 @@ namespace RestauranteCodenation.Data.Repositorio
             _contexto.SaveChanges();
         }
 
-        public T SelecionarPorId()
+        public List<T> SelecionarTodos()
         {
-            throw new NotImplementedException();
-        }
-
-        public List<T> Excluir()
-        {
-            throw new NotImplementedException();
+            return _contexto.Set<T>().ToList();
         }
 
         public void Dispose()
@@ -59,4 +47,3 @@ namespace RestauranteCodenation.Data.Repositorio
         }
     }
 }
-

@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RestauranteCodenation.Domain;
-using System;
+using RestauranteCodenation.Domain.Repositorio;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace RestauranteCodenation.Data.Repositorio
 {
-    public class PratosIngredientesRepositorio : RepositorioBase<PratosIngredientes>
+    public class PratosIngredientesRepositorio : RepositorioBase<PratosIngredientes>, IPratosIngredientesRepositorio
     {
         public List<PratosIngredientes> SelecionarCompleto()
         {
@@ -17,5 +16,5 @@ namespace RestauranteCodenation.Data.Repositorio
                 .Include(x => x.Prato)
                 .ToList();
         }
-    }        
+    }
 }

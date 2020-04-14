@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using RestauranteCodenation.Data.Repositorio;
 using RestauranteCodenation.Domain;
+using RestauranteCodenation.Domain.Repositorio;
 
 namespace RestauranteCodenation.Api.Controllers
 {
@@ -13,26 +9,24 @@ namespace RestauranteCodenation.Api.Controllers
     [ApiController]
     public class PratosIngredientesController : ControllerBase
     {
-        private readonly PratosIngredientesRepositorio _repo;
-        public PratosIngredientesController()
+        private readonly IPratosIngredientesRepositorio _repo;
+        public PratosIngredientesController(IPratosIngredientesRepositorio repo)
         {
-            _repo = new PratosIngredientesRepositorio();
+            _repo = repo;
         }
-        // GET: api/PratosIngredientes
+
         [HttpGet]
         public IEnumerable<PratosIngredientes> Get()
         {
             return _repo.SelecionarCompleto();
         }
 
-        // GET: api/PratosIngredientes/5
         [HttpGet("{id}")]
         public PratosIngredientes Get(int id)
         {
             return _repo.SelecionarPorId(id);
         }
 
-        // POST: api/PratosIngredientes
         [HttpPost]
         public PratosIngredientes Post([FromBody] PratosIngredientes pratosIngredientes)
         {
@@ -40,15 +34,13 @@ namespace RestauranteCodenation.Api.Controllers
             return pratosIngredientes;
         }
 
-        // PUT: api/PratosIngredientes/5
-        [HttpPut()]
+        [HttpPut]
         public PratosIngredientes Put([FromBody] PratosIngredientes pratosIngredientes)
         {
             _repo.Alterar(pratosIngredientes);
             return pratosIngredientes;
         }
 
-        // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public List<PratosIngredientes> Delete(int id)
         {

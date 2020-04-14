@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using RestauranteCodenation.Data.Repositorio;
 using RestauranteCodenation.Domain;
+using RestauranteCodenation.Domain.Repositorio;
 
 namespace RestauranteCodenation.Api.Controllers
 {
@@ -13,42 +9,38 @@ namespace RestauranteCodenation.Api.Controllers
     [ApiController]
     public class AgendaCardapioController : ControllerBase
     {
-        private readonly AgendaCardapioRepositorio _repo;
-        public AgendaCardapioController()
+        private readonly IAgendaCardapioRepositorio _repo;
+        public AgendaCardapioController(IAgendaCardapioRepositorio repo)
         {
-            _repo = new AgendaCardapioRepositorio();
+            _repo = repo;
         }
-        // GET: api/AgendaCardapio
+                
         [HttpGet]
         public IEnumerable<AgendaCardapio> Get()
         {
             return _repo.SelecionarTodos();
         }
-
-        // GET: api/AgendaCardapio/5
+                
         [HttpGet("{id}")]
         public AgendaCardapio Get(int id)
         {
             return _repo.SelecionarPorId(id);
         }
-
-        // POST: api/AgendaCardapio
+                
         [HttpPost]
         public AgendaCardapio Post([FromBody] AgendaCardapio agendaCardapio)
         {
             _repo.Incluir(agendaCardapio);
             return agendaCardapio;
         }
-
-        // PUT: api/AgendaCardapio/5
-        [HttpPut()]
+                
+        [HttpPut]
         public AgendaCardapio Put([FromBody] AgendaCardapio agendaCardapio)
         {
             _repo.Alterar(agendaCardapio);
             return agendaCardapio;
         }
 
-        // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public List<AgendaCardapio> Delete(int id)
         {

@@ -1,12 +1,9 @@
 ﻿using RestauranteCodenation.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using RestauranteCodenation.Domain.Repositorio;
 
 namespace RestauranteCodenation.Data.Repositorio
 {
-    public class CardapioRepositorio : RepositorioBase<Cardapio>
-    { 
-    }        
+    public class CardapioRepositorio : RepositorioBase<Cardapio>, ICardapioRepositorio
+    {
+    }
 }

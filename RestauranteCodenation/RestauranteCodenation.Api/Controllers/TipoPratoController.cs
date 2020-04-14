@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using RestauranteCodenation.Data.Repositorio;
 using RestauranteCodenation.Domain;
+using RestauranteCodenation.Domain.Repositorio;
 
 namespace RestauranteCodenation.Api.Controllers
 {
@@ -18,21 +14,19 @@ namespace RestauranteCodenation.Api.Controllers
         {
             _repo = repo;
         }
-        // GET: api/TipoPrato
+        
         [HttpGet]
         public IEnumerable<TipoPrato> Get()
         {
             return _repo.SelecionarTodos();
         }
 
-        // GET: api/TipoPrato/5
         [HttpGet("{id}")]
         public TipoPrato Get(int id)
         {
             return _repo.SelecionarPorId(id);
         }
 
-        // POST: api/TipoPrato
         [HttpPost]
         public TipoPrato Post([FromBody] TipoPrato tipoPrato)
         {
@@ -40,15 +34,13 @@ namespace RestauranteCodenation.Api.Controllers
             return tipoPrato;
         }
 
-        // PUT: api/TipoPrato/5
-        [HttpPut()]
+        [HttpPut("{id}")]
         public TipoPrato Put([FromBody] TipoPrato tipoPrato)
         {
             _repo.Alterar(tipoPrato);
             return tipoPrato;
         }
 
-        // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public List<TipoPrato> Delete(int id)
         {

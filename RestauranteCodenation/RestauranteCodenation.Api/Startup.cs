@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using RestauranteCodenation.Data.Repositorio;
+using RestauranteCodenation.Domain.Repositorio;
+using RestauranteCodenation.Application.Mapper;
+using AutoMapper;
 
 namespace RestauranteCodenation.Api
 {
@@ -31,6 +28,14 @@ namespace RestauranteCodenation.Api
 
             services.AddScoped(typeof(IRepositorioBase<>), typeof(RepositorioBase<>));
             services.AddScoped<ITipoPratoRepositorio, TipoPratoRepositorio>();
+            services.AddScoped<IAgendaCardapioRepositorio, AgendaCardapioRepositorio>();
+            services.AddScoped<IAgendaRepositorio, AgendaRepositorio>();
+            services.AddScoped<ICardapioRepositorio, CardapioRepositorio>();
+            services.AddScoped<IIngredienteRepositorio, IngredienteRepositorio>();
+            services.AddScoped<IPratoRepositorio, PratoRepositorio>();
+            services.AddScoped<IPratosIngredientesRepositorio, PratosIngredientesRepositorio>();
+
+            services.AddAutoMapper(typeof(AutoMapperConfig));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
