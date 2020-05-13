@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using RestauranteCodenation.Application.Interface;
-using RestauranteCodenation.Application.ViewModel;
-using RestauranteCodenation.Data.Repositorio;
-using RestauranteCodenation.Domain;
-using RestauranteCodenation.Domain.Repositorio;
+using RestauranteCodenation.Application;
 
 namespace RestauranteCodenation.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class IngredienteController : ControllerBase
     {
-        private readonly IIngredienteApplication _app;
-        public IngredienteController(IIngredienteApplication app)
+        private readonly IIngredienteAplicacao _app;
+        public IngredienteController(IIngredienteAplicacao app)
         {
             _app = app;
-        }
+        }        
         
         [HttpGet]
         public IEnumerable<IngredienteViewModel> Get()

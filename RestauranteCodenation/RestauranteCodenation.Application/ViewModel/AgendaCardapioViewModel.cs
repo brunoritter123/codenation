@@ -1,4 +1,4 @@
-﻿namespace RestauranteCodenation.Application.ViewModel
+﻿namespace RestauranteCodenation.Application
 {
     public class AgendaCardapioViewModel
     {

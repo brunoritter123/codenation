@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RestauranteCodenation.Application.ViewModel
+namespace RestauranteCodenation.Application
 {
     public class TipoPratoViewModel
     {

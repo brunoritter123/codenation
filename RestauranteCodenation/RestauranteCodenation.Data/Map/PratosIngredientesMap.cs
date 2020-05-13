@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using RestauranteCodenation.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RestauranteCodenation.Data.Map
 {
@@ -11,20 +8,20 @@ namespace RestauranteCodenation.Data.Map
     {
         public void Configure(EntityTypeBuilder<PratosIngredientes> builder)
         {
-            builder.ToTable(nameof(PratosIngredientes));
+            builder.ToTable("PratosIngredientes");
 
-            builder.HasKey(x => new { x.IdPrato, x.IdIngrediente });
+            builder.HasKey(t => new { t.IdIngrediente, t.IdPrato });
 
             builder.HasOne(i => i.Ingrediente)
-                .WithMany(pi => pi.PratosIngredientes)
-                .HasForeignKey(i => i.IdIngrediente);
+           .WithMany(pi => pi.PratosIngredientes)
+           .HasForeignKey(i => i.IdIngrediente);
 
             builder.HasOne(p => p.Prato)
-                .WithMany(pi => pi.PratosIngredientes)
-                .HasForeignKey(p => p.IdPrato);
+           .WithMany(pi => pi.PratosIngredientes)
+           .HasForeignKey(p => p.IdPrato);
 
             builder.Property(x => x.Id)
-                .UseIdentityColumn();
+              .UseIdentityColumn();
         }
     }
 }

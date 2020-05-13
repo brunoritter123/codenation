@@ -1,9 +1,5 @@
 ﻿using AutoMapper;
-using RestauranteCodenation.Application.ViewModel;
 using RestauranteCodenation.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RestauranteCodenation.Application.Mapper
 {

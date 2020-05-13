@@ -1,14 +1,14 @@
-﻿using RestauranteCodenation.Application.ViewModel;
+﻿
 using System.Collections.Generic;
 
-namespace RestauranteCodenation.Application.Interface
+namespace RestauranteCodenation.Application
 {
-    public interface ITipoPratoApplication
+    public interface ITipoPratoAplicacao
     {
-        List<TipoPratoViewModel> SelecionarTodos();
         void Incluir(TipoPratoViewModel entity);
         void Alterar(TipoPratoViewModel entity);
         TipoPratoViewModel SelecionarPorId(int id);
         void Excluir(int id);
+        List<TipoPratoViewModel> SelecionarTodos();
     }
 }

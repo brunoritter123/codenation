@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using RestauranteCodenation.Application.Interface;
-using RestauranteCodenation.Application.ViewModel;
-using RestauranteCodenation.Domain;
-using RestauranteCodenation.Domain.Repositorio;
+using RestauranteCodenation.Application;
 
 namespace RestauranteCodenation.Api.Controllers
 {
@@ -11,8 +8,8 @@ namespace RestauranteCodenation.Api.Controllers
     [ApiController]
     public class CardapioController : ControllerBase
     {
-        private readonly ICardapioApplication _app;
-        public CardapioController(ICardapioApplication app)
+        private readonly ICardapioAplicacao _app;
+        public CardapioController(ICardapioAplicacao app)
         {
             _app = app;
         }

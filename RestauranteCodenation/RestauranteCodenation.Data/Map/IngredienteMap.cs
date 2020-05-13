@@ -16,11 +16,11 @@ namespace RestauranteCodenation.Data.Map
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Nome)
-                .HasColumnType("varchar(100)")
-                .IsRequired();
+               .HasColumnType("varchar(100)")
+               .IsRequired();
 
             builder.Property(x => x.Descricao)
-                .HasColumnType("varchar(500)");
+               .HasColumnType("varchar(500)");
         }
     }
 }

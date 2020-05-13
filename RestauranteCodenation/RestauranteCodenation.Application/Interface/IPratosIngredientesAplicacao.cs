@@ -1,9 +1,8 @@
-﻿using RestauranteCodenation.Application.ViewModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace RestauranteCodenation.Application.Interface
+namespace RestauranteCodenation.Application
 {
-    public interface IPratosIngredientesApplication
+    public interface IPratosIngredientesAplicacao
     {
         List<PratosIngredientesViewModel> SelecionarCompleto();
         void Incluir(PratosIngredientesViewModel entity);

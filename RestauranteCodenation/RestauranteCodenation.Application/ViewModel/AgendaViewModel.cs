@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace RestauranteCodenation.Application.ViewModel
+namespace RestauranteCodenation.Application
 {
     public class AgendaViewModel
     {

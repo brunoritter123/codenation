@@ -10,6 +10,6 @@ namespace RestauranteCodenation.Domain
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public DateTime Validade { get; set; }
-        public List<PratosIngredientes> PratosIngredientes { get; set; }
+        public List<PratosIngredientes> PratosIngredientes { get; set; }        
     }
 }

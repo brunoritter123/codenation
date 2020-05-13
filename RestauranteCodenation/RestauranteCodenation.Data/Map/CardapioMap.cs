@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using RestauranteCodenation.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RestauranteCodenation.Data.Map
 {
@@ -11,16 +8,16 @@ namespace RestauranteCodenation.Data.Map
     {
         public void Configure(EntityTypeBuilder<Cardapio> builder)
         {
-            builder.ToTable(nameof(Cardapio));
+            builder.ToTable("Cardapio");
 
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Nome)
-                .HasColumnType("varchar(100)")
-                .IsRequired();
+              .HasColumnType("varchar(100)")
+              .IsRequired();
 
             builder.Property(x => x.Descricao)
-                .HasColumnType("varchar(100)");
+             .HasColumnType("varchar(500)");             
         }
     }
 }

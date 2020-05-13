@@ -1,30 +1,33 @@
 ﻿using AutoMapper;
-using RestauranteCodenation.Application.Interface;
-using RestauranteCodenation.Application.ViewModel;
 using RestauranteCodenation.Domain;
 using RestauranteCodenation.Domain.Repositorio;
 using System.Collections.Generic;
 
-namespace RestauranteCodenation.Application.App
+namespace RestauranteCodenation.Application
 {
-    public class AgendaCardapioApplication : IAgendaCardapioApplication
+    public class AgendaCardapioAplicacao : IAgendaCardapioAplicacao
     {
         private readonly IAgendaCardapioRepositorio _repo;
         private readonly IMapper _mapper;
-        public AgendaCardapioApplication(IAgendaCardapioRepositorio repo, IMapper mapper)
+        public AgendaCardapioAplicacao(IAgendaCardapioRepositorio repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
         }
 
-        public void Incluir(AgendaCardapioViewModel entity)
-        {
-            _repo.Incluir(_mapper.Map<AgendaCardapio>(entity));
-        }
-
         public void Alterar(AgendaCardapioViewModel entity)
         {
             _repo.Alterar(_mapper.Map<AgendaCardapio>(entity));
+        }
+
+        public void Excluir(int id)
+        {
+            _repo.Excluir(id);
+        }
+
+        public void Incluir(AgendaCardapioViewModel entity)
+        {
+            _repo.Incluir(_mapper.Map<AgendaCardapio>(entity));
         }
 
         public AgendaCardapioViewModel SelecionarPorId(int id)
@@ -36,11 +39,5 @@ namespace RestauranteCodenation.Application.App
         {
             return _mapper.Map<List<AgendaCardapioViewModel>>(_repo.SelecionarTodos());
         }
-
-        public void Excluir(int id)
-        {
-            _repo.Excluir(id);
-        }
     }
 }
-

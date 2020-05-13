@@ -1,30 +1,34 @@
 ﻿using AutoMapper;
-using RestauranteCodenation.Application.Interface;
-using RestauranteCodenation.Application.ViewModel;
 using RestauranteCodenation.Domain;
 using RestauranteCodenation.Domain.Repositorio;
 using System.Collections.Generic;
 
-namespace RestauranteCodenation.Application.App
+namespace RestauranteCodenation.Application
 {
-    public class IngredienteApplication : IIngredienteApplication
+    public class IngredienteAplicacao : IIngredienteAplicacao
     {
         private readonly IIngredienteRepositorio _repo;
         private readonly IMapper _mapper;
-        public IngredienteApplication(IIngredienteRepositorio repo, IMapper mapper)
+
+        public IngredienteAplicacao(IIngredienteRepositorio repo,IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
         }
 
-        public void Incluir(IngredienteViewModel entity)
-        {
-            _repo.Incluir(_mapper.Map<Ingrediente>(entity));
-        }
-
         public void Alterar(IngredienteViewModel entity)
         {
             _repo.Alterar(_mapper.Map<Ingrediente>(entity));
+        }
+
+        public void Excluir(int id)
+        {
+            _repo.Excluir(id);
+        }
+
+        public void Incluir(IngredienteViewModel entity)
+        {
+            _repo.Incluir(_mapper.Map<Ingrediente>(entity));
         }
 
         public IngredienteViewModel SelecionarPorId(int id)
@@ -36,11 +40,5 @@ namespace RestauranteCodenation.Application.App
         {
             return _mapper.Map<List<IngredienteViewModel>>(_repo.SelecionarTodos());
         }
-
-        public void Excluir(int id)
-        {
-            _repo.Excluir(id);
-        }
     }
 }
-

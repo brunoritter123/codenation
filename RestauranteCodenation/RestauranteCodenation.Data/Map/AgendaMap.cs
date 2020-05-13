@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using RestauranteCodenation.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RestauranteCodenation.Data.Map
 {
@@ -11,7 +8,7 @@ namespace RestauranteCodenation.Data.Map
     {
         public void Configure(EntityTypeBuilder<Agenda> builder)
         {
-            builder.ToTable(nameof(Agenda));
+            builder.ToTable("Agenda");
 
             builder.HasKey(x => x.Id);
 
@@ -20,8 +17,8 @@ namespace RestauranteCodenation.Data.Map
                 .IsRequired();
 
             builder.Property(x => x.DataFim)
-                .HasColumnType("smalldatetime")
-                .IsRequired();
+               .HasColumnType("smalldatetime")
+               .IsRequired();
         }
     }
 }

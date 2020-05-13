@@ -10,8 +10,8 @@ using RestauranteCodenation.Data;
 namespace RestauranteCodenation.Data.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20200409231829_init")]
-    partial class init
+    [Migration("20200409201511_MeuPrimeiroBanco")]
+    partial class MeuPrimeiroBanco
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,7 +69,7 @@ namespace RestauranteCodenation.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Descricao")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(500)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -137,10 +137,10 @@ namespace RestauranteCodenation.Data.Migrations
 
             modelBuilder.Entity("RestauranteCodenation.Domain.PratosIngredientes", b =>
                 {
-                    b.Property<int>("IdPrato")
+                    b.Property<int>("IdIngrediente")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdIngrediente")
+                    b.Property<int>("IdPrato")
                         .HasColumnType("int");
 
                     b.Property<int>("Id")
@@ -150,9 +150,9 @@ namespace RestauranteCodenation.Data.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.HasKey("IdPrato", "IdIngrediente");
+                    b.HasKey("IdIngrediente", "IdPrato");
 
-                    b.HasIndex("IdIngrediente");
+                    b.HasIndex("IdPrato");
 
                     b.ToTable("PratosIngredientes");
                 });
@@ -191,7 +191,7 @@ namespace RestauranteCodenation.Data.Migrations
             modelBuilder.Entity("RestauranteCodenation.Domain.Prato", b =>
                 {
                     b.HasOne("RestauranteCodenation.Domain.Cardapio", null)
-                        .WithMany("Pratos")
+                        .WithMany("Prato")
                         .HasForeignKey("CardapioId");
 
                     b.HasOne("RestauranteCodenation.Domain.TipoPrato", "TipoPrato")

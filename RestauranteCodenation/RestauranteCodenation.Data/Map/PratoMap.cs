@@ -11,21 +11,21 @@ namespace RestauranteCodenation.Data.Map
     {
         public void Configure(EntityTypeBuilder<Prato> builder)
         {
-            builder.ToTable(nameof(Prato));
+            builder.ToTable("Prato");
 
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Nome)
-                .HasColumnType("varchar(100)")
-                .IsRequired();
+               .HasColumnType("varchar(100)")
+               .IsRequired();
 
             builder.Property(x => x.Descricao)
-                .HasColumnType("varchar(500)")
-                .IsRequired();
+               .HasColumnType("varchar(500)")
+               .IsRequired();
 
             builder.Property(x => x.Preco)
-                .HasColumnType("decimal(18,2)")
-                .IsRequired();
+               .HasColumnType("decimal(18,2)")
+               .IsRequired();
         }
     }
 }

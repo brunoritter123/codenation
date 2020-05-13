@@ -11,6 +11,6 @@ namespace RestauranteCodenation.Domain
         public Cardapio Cardapio { get; set; }
         public int IdAgenda { get; set; }
         public Agenda Agenda { get; set; }
-        public int Id { get ; set ; }
+        public int Id { get; set; }
     }
 }

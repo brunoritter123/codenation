@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using RestauranteCodenation.Application.Interface;
-using RestauranteCodenation.Application.ViewModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using RestauranteCodenation.Application;
 
 namespace RestauranteCodenation.Api.Controllers
 {
@@ -9,8 +8,8 @@ namespace RestauranteCodenation.Api.Controllers
     [ApiController]
     public class PratosIngredientesController : ControllerBase
     {
-        private readonly IPratosIngredientesApplication _app;
-        public PratosIngredientesController(IPratosIngredientesApplication app)
+        private readonly IPratosIngredientesAplicacao _app;
+        public PratosIngredientesController(IPratosIngredientesAplicacao app)
         {
             _app = app;
         }

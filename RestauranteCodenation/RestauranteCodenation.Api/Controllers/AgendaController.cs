@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using RestauranteCodenation.Application.Interface;
-using RestauranteCodenation.Application.ViewModel;
-using RestauranteCodenation.Domain;
-using RestauranteCodenation.Domain.Repositorio;
+using RestauranteCodenation.Application;
 
 namespace RestauranteCodenation.Api.Controllers
 {
@@ -11,8 +8,8 @@ namespace RestauranteCodenation.Api.Controllers
     [ApiController]
     public class AgendaController : ControllerBase
     {
-        private readonly IAgendaApplication _app;
-        public AgendaController(IAgendaApplication app)
+        private readonly IAgendaAplicacao _app;
+        public AgendaController(IAgendaAplicacao app)
         {
             _app = app;
         }

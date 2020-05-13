@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RestauranteCodenation.Data.Migrations
 {
-    public partial class init : Migration
+    public partial class MeuPrimeiroBanco : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,7 +28,7 @@ namespace RestauranteCodenation.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "varchar(100)", nullable: false),
-                    Descricao = table.Column<string>(type: "varchar(100)", nullable: true)
+                    Descricao = table.Column<string>(type: "varchar(500)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -129,7 +129,7 @@ namespace RestauranteCodenation.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PratosIngredientes", x => new { x.IdPrato, x.IdIngrediente });
+                    table.PrimaryKey("PK_PratosIngredientes", x => new { x.IdIngrediente, x.IdPrato });
                     table.ForeignKey(
                         name: "FK_PratosIngredientes_Ingrediente_IdIngrediente",
                         column: x => x.IdIngrediente,
@@ -160,9 +160,9 @@ namespace RestauranteCodenation.Data.Migrations
                 column: "IdTipoPrato");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PratosIngredientes_IdIngrediente",
+                name: "IX_PratosIngredientes_IdPrato",
                 table: "PratosIngredientes",
-                column: "IdIngrediente");
+                column: "IdPrato");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
